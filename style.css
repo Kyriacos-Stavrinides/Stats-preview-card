@@ -1,0 +1,232 @@
+/* Root variables */
+
+:root {
+    /* Font variables */
+    font-size: 15px;
+    --ff-base: 'Inter', sans-serif;
+    --ff-accent: 'Lexend Deca', sans-serif;
+    --fw-regular: 400;
+    --fw-bold: 700;
+    /* Color variables */
+    /* primary clrs */
+    --clr-primary-900: hsl(233, 47%, 7%);
+    --clr-primary-600: hsl(244, 38%, 16%);
+    --clr-primary-300: hsl(277, 64%, 61%);
+    /* accent clrs */
+    --clr-accent-main: hsl(0, 0%, 100%);
+    --clr-accent-paragraph: hsla(0, 0%, 100%, 0.75);
+    --clr-accent-headings: hsla(0, 0%, 100%, 0.6);
+}
+
+/* Resets based largely on Josh Comeau's Modern CSS Reset:https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    width: 100vw;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img, svg, picture {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+input, button {
+    font: inherit;
+}
+
+p, h1, h2, h3 {
+    overflow-wrap: break-word;
+}
+
+/* Utility classes */
+
+.white-text {
+    color: var(--clr-accent-main);
+    font-weight: var(--fw-bold);
+}
+
+/* General styling */
+
+body{
+    background-color: var(--clr-primary-900);
+    font-family: var(--ff-base);
+}
+
+p {
+    color: var(--clr-accent-paragraph);
+    
+    
+}
+
+article {
+    max-width: 18rem;
+    max-height: 45rem;
+    background-color: var(--clr-primary-600);
+    overflow: hidden;
+}
+
+@media (min-width: 40rem) {
+    article {
+        max-width: 60rem;
+        max-height: 30rem; 
+    }
+}
+
+
+/* Rest of the styling */
+
+body {
+    --radius: .5rem;
+    display: grid;
+    place-content: center;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 2rem 1fr 2rem;
+    grid-template-rows: 4fr 3fr 3fr;
+    grid-template-areas: 
+        'img img img'
+        '. txt .'
+        '. info .'
+    ;
+    row-gap: 2rem;
+    border-radius: var(--radius);
+    
+    font-size: 12px;
+}
+
+@media (min-width: 40rem) {
+    .card {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2fr 1fr;
+        grid-template-areas: 
+            'txt img'
+            'txt img'
+            'info img'
+        ;
+    }
+    
+}
+
+.card__img {
+    grid-area: img;
+
+    background-color: var(--clr-accent-headings);
+    background-image: url(images/image-header-mobile.jpg);
+    background-blend-mode: multiply;
+    background-size: cover;
+    
+}
+
+.card__text {
+    grid-area: txt;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+}
+
+@media (min-width: 40rem) {
+    .card__text, .card__info {
+        display: grid;
+        text-align: left;
+    }
+
+    .card__text {
+        grid-template-columns: 4rem 1fr 4rem;
+        grid-template-rows: 2rem 1fr 1fr;
+        grid-template-areas: 
+            '. . .'
+            '. header .'
+            '. description .'
+        ;
+    }
+
+    .card__text .card__header {
+        grid-area: header;
+    }
+
+    .card__text .card__description {
+        grid-area: description;
+    }
+
+    .card__info {
+        grid-template-columns: 4rem repeat(3, 1fr) 4rem;
+        grid-template-rows: 2fr 1fr;
+        grid-template-areas: 
+            '. com temp quer .'
+            '. . . . .'
+        ;
+        gap: 1rem;
+    }
+
+    .card__info p {
+        text-align: left;
+    }
+
+    .card__info .card__info-companies {
+        grid-area: com;
+    }
+
+    .card__info .card__info-templates {
+        grid-area: temp;
+    }
+
+    .card__info .card__info-queries {
+        grid-area: quer;
+    }
+
+}
+
+.card__text .card__header {
+    font-size: clamp(1.5rem, 40rem, 1.8rem);
+}
+
+.card__text .card__header span {
+    color: var(--clr-accent-headings);
+}
+
+
+.card__info {
+    grid-area: info;
+    text-align: center;
+    display: grid;
+    grid-auto-flow: row;
+    place-content: center;
+    padding-bottom: 1.5rem;
+}
+
+.card__info p {
+    text-transform: uppercase;
+    padding-block: var(--radius);
+    font-family: var(--ff-accent);
+    font-size: 10px;
+    color: var(--clr-accent-paragraph);
+}
+
+.card__info p span {
+    font-size: 1.2rem;
+    text-transform: lowercase;
+    font-family: var(--ff-base);
+}
